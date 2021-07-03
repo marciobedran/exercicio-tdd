@@ -1,8 +1,7 @@
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,8 +20,8 @@ class ProcessadorPagamentosTest {
 		boletos.add(boleto1);
 		boletos.add(boleto2);
 		boletos.add(boleto3);
-		Pagamento pagamento = processador.pagaFatura(fatura, boletos);
-		Assertions.assertEquals(fatura.status, FaturaStatus.PAGO);
+		processador.processaPagamentos(fatura, boletos);
+		Assertions.assertEquals(fatura.getStatus(), "PAGA");
 	}
 
 }

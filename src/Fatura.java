@@ -1,15 +1,17 @@
 import java.util.Date;
 
 public class Fatura {
-	
+
 	private Date data;
 	private double valor_total;
 	private String nome;
-	
+	private String status;
+
 	public Fatura(Date data, double valor_total, String nome) {
 		this.setData(data);
 		this.setValorTotal(valor_total);
 		this.setNome(nome);
+		this.setStatus("ABERTA");
 	}
 
 	public Date getData() {
@@ -34,6 +36,14 @@ public class Fatura {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }
