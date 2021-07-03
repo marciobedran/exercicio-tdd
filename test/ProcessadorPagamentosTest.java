@@ -55,5 +55,16 @@ class ProcessadorPagamentosTest {
 		processador.processaPagamentos(fatura, boletos);
 		Assertions.assertEquals(fatura.getStatus(), "PARCIALMENTE_PAGA");
 	}
+	
+	@Test
+	@DisplayName("Teste de processamento sem enviar boletos")
+	void TestaFaturaPagaSemBoletos() {
+
+		ProcessadorPagamentos processador = new ProcessadorPagamentos();
+		Fatura fatura = new Fatura(new Date(), 2000.00, "Marcio Bedran");
+		ArrayList<Boleto> boletos = new ArrayList<Boleto>();
+		processador.processaPagamentos(fatura, boletos);
+		Assertions.assertEquals(fatura.getStatus(), "ABERTA");
+	}
 
 }
