@@ -25,7 +25,7 @@ class ProcessadorPagamentosTest {
 	}
 	
 	@Test
-	@DisplayName("Teste com valor do somatorio dos boletos igual ao valor da fatura")
+	@DisplayName("Teste com valor do somatorio dos boletos maior que valor da fatura")
 	void TestaFaturaPagaParaValoresMaiores() {
 
 		ProcessadorPagamentos processador = new ProcessadorPagamentos();
@@ -39,6 +39,21 @@ class ProcessadorPagamentosTest {
 		boletos.add(boleto3);
 		processador.processaPagamentos(fatura, boletos);
 		Assertions.assertEquals(fatura.getStatus(), "PAGA");
+	}
+	
+	@Test
+	@DisplayName("Teste com valor do somatorio dos boletos menor que valor da fatura")
+	void TestaFaturaPagaParaValoresMenores() {
+
+		ProcessadorPagamentos processador = new ProcessadorPagamentos();
+		Fatura fatura = new Fatura(new Date(), 2000.00, "Marcio Bedran");
+		Boleto boleto1 = new Boleto(1, new Date(), 500.00);
+		Boleto boleto2 = new Boleto(2, new Date(), 400.00);
+		ArrayList<Boleto> boletos = new ArrayList<Boleto>();
+		boletos.add(boleto1);
+		boletos.add(boleto2);
+		processador.processaPagamentos(fatura, boletos);
+		Assertions.assertEquals(fatura.getStatus(), "PARCIALMENTE_PAGA");
 	}
 
 }
