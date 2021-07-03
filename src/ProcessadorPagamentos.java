@@ -11,6 +11,9 @@ public class ProcessadorPagamentos {
 		if (valor_total_boletos >= valor_total_fatura) {
 			fatura.setStatus("PAGA");
 		}
+		else {
+			fatura.setStatus("PARCIALMENTE_PAGA");
+		}
 	}
 	
 }
